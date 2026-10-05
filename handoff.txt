@@ -1,0 +1,467 @@
+# Telegram Landing Page V1 — End-to-End Implementation Handoff
+
+## 1. Objective
+
+Build and deploy a minimal landing page for a Meta Traffic campaign.
+
+The intended funnel is:
+
+```text
+Meta Ad
+   ↓
+Landing Page
+   ↓
+User manually clicks "Join Telegram"
+   ↓
+Telegram opens
+```
+
+Important:
+
+- Do NOT auto-redirect users to Telegram.
+- The manual Telegram CTA click is our intentional downstream signal.
+- We are NOT tracking confirmed Telegram channel membership in V1.
+
+---
+
+## 2. Tech Stack
+
+Keep the implementation minimal.
+
+Preferred:
+
+```text
+HTML
+CSS
+Vanilla JavaScript
+Cloudflare Pages
+Meta Pixel
+```
+
+Do NOT introduce:
+
+- React
+- Next.js
+- backend
+- database
+- Telegram Bot API
+- Conversions API
+
+unless absolutely necessary.
+
+---
+
+## 3. Required File Structure
+
+```text
+telegram-landing-page/
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+```
+
+---
+
+## 4. Landing Page Requirements
+
+The page must be:
+
+- mobile-first
+- fast loading
+- responsive
+- visually clean
+- minimal
+- accessible
+- suitable for paid Meta traffic
+
+Content structure:
+
+```text
+Brand / Logo Area
+
+Main Headline
+
+1–2 short lines explaining the value of the Telegram channel
+
+Primary CTA:
+"Join Telegram"
+```
+
+There should be only one primary conversion action.
+
+Do not add unnecessary navigation, forms, popups, animations, or distracting elements.
+
+---
+
+## 5. Telegram CTA Behaviour
+
+The Telegram button must NOT trigger automatically.
+
+The user must manually click:
+
+```text
+Join Telegram
+```
+
+When clicked:
+
+1. Fire the Meta Pixel custom event:
+
+```javascript
+fbq('trackCustom', 'TelegramClick');
+```
+
+2. Then navigate to the Telegram URL.
+
+Use a placeholder initially:
+
+```text
+TELEGRAM_CHANNEL_URL
+```
+
+Make it easy to replace later.
+
+Make sure event firing is not accidentally skipped because navigation happens immediately.
+
+Implement the redirect cleanly with a very short controlled delay if required.
+
+---
+
+## 6. Meta Pixel
+
+The Meta Pixel base code will be supplied separately.
+
+Create an obvious placeholder in `index.html`:
+
+```html
+<!-- META PIXEL BASE CODE START -->
+
+<!-- Paste Meta Pixel code here -->
+
+<!-- META PIXEL BASE CODE END -->
+```
+
+The Pixel must support:
+
+### Page load
+
+```text
+PageView
+```
+
+This should fire when the landing page loads.
+
+### Telegram CTA
+
+```text
+TelegramClick
+```
+
+This fires only when the user manually clicks the Telegram CTA.
+
+Do NOT fire `TelegramClick` on:
+
+- page load
+- scroll
+- hover
+- automatic redirect
+
+---
+
+## 7. Tracking Meaning
+
+Use these exact semantics:
+
+```text
+PageView
+= user successfully loaded the landing page
+
+TelegramClick
+= user intentionally clicked the Join Telegram CTA
+```
+
+Do NOT represent `TelegramClick` as a confirmed Telegram subscription.
+
+Actual Telegram join tracking is explicitly out of scope for V1.
+
+---
+
+## 8. UTM Handling
+
+The landing page must preserve incoming UTM parameters.
+
+Expected Meta campaign URL may look like:
+
+```text
+https://DOMAIN/?utm_source=meta&utm_medium=paid_social&utm_campaign=telegram_v1&utm_content=creative_1
+```
+
+At minimum support:
+
+```text
+utm_source
+utm_medium
+utm_campaign
+utm_content
+```
+
+Do not remove or overwrite them unnecessarily.
+
+No external analytics platform is required for V1.
+
+---
+
+## 9. Meta Campaign Context
+
+This landing page is designed for the following locked campaign configuration:
+
+```text
+Objective: Traffic
+Conversion location: Website
+Performance goal: Landing Page Views
+Location: India
+Age: 18–45
+Gender: Male
+Audience: Broad
+Placements: Advantage+
+Bid strategy: Highest volume
+CTA on Meta ad: Learn More
+```
+
+Therefore the page should feel like the natural continuation of a:
+
+```text
+Learn More
+```
+
+ad click.
+
+---
+
+## 10. Content Direction
+
+The campaign relates to finance/investment-oriented Telegram traffic.
+
+The page copy should:
+
+- clearly explain the Telegram channel value
+- remain concise
+- avoid guaranteed returns
+- avoid exaggerated profit claims
+- avoid misleading financial promises
+- avoid urgency/scarcity tricks unless genuinely true
+
+Use placeholder copy if the exact offer is not yet available.
+
+Example structure:
+
+```text
+Headline:
+Stay Updated With Relevant Market Insights
+
+Supporting text:
+Get concise updates, observations, and useful information directly through our Telegram channel.
+
+CTA:
+Join Telegram
+```
+
+Do not treat this example as final marketing copy unless instructed.
+
+---
+
+## 11. UX Requirements
+
+The CTA should be visible without excessive scrolling on mobile.
+
+Target experience:
+
+```text
+User opens page
+↓
+Immediately understands the purpose
+↓
+Reads short explanation
+↓
+Makes conscious decision
+↓
+Clicks Join Telegram
+```
+
+Avoid making the page look like an intermediate redirect page.
+
+It should feel like a legitimate landing page.
+
+---
+
+## 12. Performance Requirements
+
+Optimize for Landing Page Views.
+
+Therefore:
+
+- minimal JavaScript
+- minimal CSS
+- optimized assets
+- no heavy frameworks
+- no unnecessary third-party scripts
+- no large background images
+- avoid layout shift
+- fast first render
+
+---
+
+## 13. Security / Code Quality
+
+Follow basic production practices:
+
+- no secrets in frontend
+- external links handled safely
+- semantic HTML
+- clear separation of HTML/CSS/JS
+- no unnecessary dependencies
+- useful but minimal comments
+- no console errors
+- no broken links
+
+---
+
+## 14. Cloudflare Pages Deployment
+
+Prepare the project so it can be deployed directly as a static Cloudflare Pages site.
+
+Deployment should require no build framework.
+
+Expected output directory:
+
+```text
+project root
+```
+
+After deployment, provide:
+
+```text
+LIVE_URL
+```
+
+If Cloudflare gives a URL such as:
+
+```text
+https://project-name.pages.dev
+```
+
+use that as the initial campaign destination.
+
+Custom domain configuration is NOT required for V1.
+
+---
+
+## 15. Verification Checklist
+
+Before declaring completion, verify:
+
+```text
+[ ] Page loads correctly on desktop
+[ ] Page loads correctly on mobile
+[ ] Page is responsive
+[ ] No automatic Telegram redirect
+[ ] Join Telegram button works
+[ ] TelegramClick fires only on button click
+[ ] PageView fires on page load
+[ ] Meta Pixel ID is correctly installed
+[ ] Telegram URL is correct
+[ ] UTM parameters do not break the page
+[ ] No console errors
+[ ] Page is deployed successfully
+[ ] Public deployment URL works
+```
+
+---
+
+## 16. Meta Pixel Verification
+
+After deployment:
+
+1. Open Meta Events Manager.
+2. Open the correct Dataset/Pixel.
+3. Use **Test Events**.
+4. Visit the deployed landing page.
+
+Verify:
+
+```text
+PageView
+```
+
+Then manually click:
+
+```text
+Join Telegram
+```
+
+Verify:
+
+```text
+TelegramClick
+```
+
+Only after both events are confirmed should the landing page be considered ready for Meta Ads.
+
+---
+
+## 17. Deliverables
+
+At completion provide:
+
+```text
+1. Complete source code
+2. Deployed landing-page URL
+3. Location where Telegram URL can be changed
+4. Location where Meta Pixel code/ID is configured
+5. Confirmation that PageView works
+6. Confirmation that TelegramClick works
+7. Brief deployment instructions
+8. Brief README
+```
+
+---
+
+## 18. Important Constraints
+
+Do not expand scope.
+
+Do NOT implement:
+
+```text
+Telegram membership verification
+Telegram bot
+backend
+database
+Conversions API
+authentication
+user accounts
+CRM
+lead forms
+complex analytics
+```
+
+This is intentionally a minimal V1 experiment.
+
+The final architecture must remain:
+
+```text
+Meta Ad
+   ↓
+Landing Page
+   ↓
+PageView
+   ↓
+User manually clicks Join Telegram
+   ↓
+TelegramClick
+   ↓
+Telegram
+```
+
+Implement this end to end and stop once deployment and event verification are complete.

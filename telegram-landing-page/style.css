@@ -1,0 +1,102 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172b26;
+  background: #f7f8f6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; }
+
+.page-shell {
+  width: min(100% - 40px, 1080px);
+  min-height: 100svh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 28px 0;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #154f41;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.brand-name { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+
+.main-content { flex: 1; display: flex; align-items: center; }
+
+.intro { max-width: 640px; padding: 32px 0 64px; }
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: #347661;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+h1 {
+  max-width: 570px;
+  margin: 0;
+  font-size: clamp(42px, 8vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+}
+
+.description {
+  max-width: 530px;
+  margin: 24px 0 0;
+  color: #546760;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.55;
+}
+
+.primary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 54px;
+  margin-top: 34px;
+  padding: 0 24px;
+  border-radius: 10px;
+  background: #0077b5;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.primary-cta:hover { background: #00699f; }
+.primary-cta:focus-visible { outline: 3px solid #d8ae64; outline-offset: 4px; }
+
+.site-footer { padding: 22px 0 30px; border-top: 1px solid #e2e8e3; }
+.site-footer p { max-width: 650px; margin: 0; color: #728079; font-size: 12px; line-height: 1.5; }
+
+@media (max-width: 600px) {
+  .page-shell { width: min(100% - 36px, 480px); }
+  .site-header { padding: 20px 0; }
+  .main-content { align-items: flex-start; }
+  .intro { padding: 52px 0 80px; }
+  .description { margin-top: 22px; }
+  .primary-cta { width: 100%; margin-top: 30px; }
+}

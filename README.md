@@ -23,7 +23,7 @@ https://dark-wind-4e8c.edudot1234.workers.dev/?utm_source=meta&utm_medium=paid_s
 
 ## Deploy updates from Git
 
-The live site is a Cloudflare Worker. The repository root contains `wrangler.jsonc`, which targets the existing `dark-wind-4e8c` Worker and serves the files in `telegram-landing-page` as static assets. `.assetsignore` keeps this README out of the public assets.
+The live site is a Cloudflare Worker. The repository root contains `wrangler.jsonc`, which targets the existing `dark-wind-4e8c` Worker and serves this directory as static assets. `.assetsignore` limits the public assets to `index.html`, `style.css`, and `script.js`.
 
 To connect the existing Worker, open **Workers & Pages** in Cloudflare, select `dark-wind-4e8c`, then go to **Settings → Builds → Connect**. Select the GitHub or GitLab repository containing these files, choose the production branch, use the repository root as the build root, leave the build command empty, and use `npx wrangler deploy` as the deploy command. Confirm the Worker name in Cloudflare matches `wrangler.jsonc` before saving. A push to the selected production branch should then build and deploy the changed files to the same `workers.dev` address. The site itself has no build framework or runtime dependencies.
 

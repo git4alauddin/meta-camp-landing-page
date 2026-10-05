@@ -17,7 +17,44 @@ if (description) {
 
 const activeUsers = configuredText(config.activeUsers);
 if (activeUsers) {
-  document.getElementById('active-users').textContent = activeUsers;
+  const count = document.getElementById('active-users');
+  count.textContent = activeUsers;
+
+  if (/^\d+\+?$/.test(activeUsers) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const readableCount = document.createElement('span');
+    readableCount.className = 'visually-hidden';
+    readableCount.textContent = activeUsers;
+
+    const rollingCount = document.createElement('span');
+    rollingCount.className = 'rolling-count';
+    rollingCount.setAttribute('aria-hidden', 'true');
+
+    for (const [index, character] of [...activeUsers].entries()) {
+      if (character === '+') {
+        const suffix = document.createElement('span');
+        suffix.textContent = character;
+        rollingCount.append(suffix);
+        continue;
+      }
+
+      const digit = document.createElement('span');
+      digit.className = 'rolling-digit';
+      const track = document.createElement('span');
+      track.className = 'rolling-digit-track';
+      track.style.animationDelay = `${index * 90}ms`;
+
+      for (let step = 0; step <= 10; step += 1) {
+        const frame = document.createElement('span');
+        frame.textContent = String((Number(character) + step) % 10);
+        track.append(frame);
+      }
+
+      digit.append(track);
+      rollingCount.append(digit);
+    }
+
+    count.replaceChildren(readableCount, rollingCount);
+  }
 }
 
 const displayPicture = configuredText(config.displayPicture);
@@ -36,10 +73,10 @@ if (telegramUrl) {
 const TELEGRAM_CHANNEL_URL = telegramLink.href;
 
 const advertisingManager = configuredText(config.advertisingManager);
-const advertisingContactUrl = configuredText(config.advertisingContactUrl);
-if (advertisingManager && /^(https:\/\/|mailto:)/i.test(advertisingContactUrl)) {
+const advertisingTelegramUsername = configuredText(config.advertisingTelegramUsername).replace(/^@/, '');
+if (advertisingManager && /^[A-Za-z0-9_]+$/.test(advertisingTelegramUsername)) {
   document.getElementById('advertising-manager').textContent = advertisingManager;
-  document.getElementById('advertising-link').href = advertisingContactUrl;
+  document.getElementById('advertising-username').textContent = `@${advertisingTelegramUsername}`;
   document.getElementById('advertising-contact').hidden = false;
 }
 

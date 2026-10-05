@@ -6,8 +6,8 @@ A static landing page for a Meta Traffic campaign. The page records a Meta Pixel
 
 Edit `config.js` to change the channel name, brief description, active-member display value, picture, or Telegram invite URL. The current picture is the path set in `displayPicture`. To use your own local picture, put it in `assets/` and set `displayPicture` to its path, such as `./assets/my-channel.webp`; a full HTTPS image URL also works. If the picture cannot load, the page shows the first letter of the channel name instead. The member value is manually maintained, so update it when the channel changes. `config.js` is publicly served; do not put secrets in it.
 
-Set `advertisingManager` and `advertisingContactUrl` to show the advertising contact strip below the join card. The contact URL should be a full `https://` link or a `mailto:` address. The strip remains hidden while either value is blank.
-The current `ads@example.com` address is a demo placeholder; replace it before publishing the contact link.
+Set `advertisingManager` and `advertisingTelegramUsername` to show the advertising contact strip below the join card. Enter a Telegram username with or without the leading `@`. It is displayed as text, without a link. The strip remains hidden while either value is blank or the username contains characters other than letters, numbers, and underscores.
+The current `@your_username` is a demo placeholder; replace it before publishing.
 
 ## Live deployment and verification
 

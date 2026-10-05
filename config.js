@@ -7,5 +7,5 @@ window.LANDING_CONFIG = {
   displayPicture: './assets/img.png',
   telegramUrl: 'https://t.me/+XA1346Y6XPAzZTBl',
   advertisingManager: 'Kalam agency',
-  advertisingContactUrl: 'mailto:ads@example.com' // Demo only: replace with your Telegram link or email before publishing
+  advertisingTelegramUsername: '@alauddin4meta' // Demo only: replace with your Telegram username before publishing
 };

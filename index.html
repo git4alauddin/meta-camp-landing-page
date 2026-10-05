@@ -22,6 +22,7 @@
       fbq('track', 'PageView');
     </script>
     <!-- META PIXEL BASE CODE END -->
+    <script src="./config.js" defer></script>
     <script src="./script.js" defer></script>
   </head>
   <body>
@@ -31,26 +32,43 @@
     </noscript>
 
     <div class="page-shell">
-      <header class="site-header" aria-label="Brand">
-        <span class="brand-mark" aria-hidden="true">M</span>
-        <span class="brand-name">Market Insights Daily</span>
-      </header>
-
       <main class="main-content">
-        <section class="intro" aria-labelledby="page-title">
-          <p class="eyebrow">MARKET UPDATES, MADE SIMPLE</p>
-          <h1 id="page-title">Stay informed about the markets.</h1>
-          <p class="description">Concise market observations, updates, and educational insights.</p>
-
+        <section class="join-card" aria-labelledby="join-title">
+          <div class="join-avatar" id="join-avatar" aria-hidden="true">M</div>
+          <p class="join-kicker">TELEGRAM CHANNEL</p>
+          <h1 id="join-title">Market Insights Daily</h1>
+          <p class="description" id="channel-description">Concise market observations, updates, and educational insights.</p>
+          <p class="member-count">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <strong id="active-users">300+</strong> active members
+          </p>
           <a class="primary-cta" id="telegram-link" href="https://t.me/+S7HCZQ1QFbliZDJl">
-            Join Telegram <span aria-hidden="true">↗</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="m22 2-7 20-4-9-9-4 20-7Z"></path>
+              <path d="M22 2 11 13"></path>
+            </svg>
+            <span>Join Telegram</span>
           </a>
         </section>
-      </main>
 
-      <footer class="site-footer">
-        <p>Information only. Nothing here is investment advice or a promise of returns.</p>
-      </footer>
+        <section class="advertising-contact" id="advertising-contact" aria-labelledby="advertising-title" hidden>
+          <div>
+            <h2 id="advertising-title">Advertising</h2>
+            <p>Ads managed by <strong id="advertising-manager"></strong></p>
+          </div>
+          <a class="advertising-link" id="advertising-link" href="">Contact for advertising</a>
+        </section>
+
+        <section class="disclaimer" aria-labelledby="disclaimer-title">
+          <h2 id="disclaimer-title">Disclaimer</h2>
+          <p>Information only. Nothing here is investment advice or a promise of returns.</p>
+        </section>
+      </main>
     </div>
   </body>
 </html>

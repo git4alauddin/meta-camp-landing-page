@@ -2,7 +2,7 @@
 // file in ./assets/ or a full HTTPS image URL.
 window.LANDING_CONFIG = {
   channelName: 'MR KALAM',
-  description: 'Concise market observations, updates, and educational insights.',
+  description: 'Market updates, useful insights & interactive fun.',
   activeUsers: '17999+',
   displayPicture: './assets/img.png',
   telegramUrl: 'https://t.me/+XA1346Y6XPAzZTBl',

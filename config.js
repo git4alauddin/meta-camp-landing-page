@@ -4,8 +4,8 @@ window.LANDING_CONFIG = {
   channelName: 'MR KALAM',
   description: 'Market updates, useful insights & interactive fun.',
   activeUsers: '17999+',
-  displayPicture: './assets/img.png',
+  displayPicture: './assets/channel-avatar.webp',
   telegramUrl: 'https://t.me/+XA1346Y6XPAzZTBl',
-  advertisingManager: 'Kalam agency',
-  advertisingTelegramUsername: '@alauddin4meta' // Demo only: replace with your Telegram username before publishing
+  advertisingManager: 'Kalam Agency',
+  advertisingEmail: 'contact@kalam.trade' // Public advertising contact email
 };

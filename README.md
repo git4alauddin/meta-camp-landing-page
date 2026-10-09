@@ -6,14 +6,15 @@ A static landing page for a Meta Traffic campaign. The page records a Meta Pixel
 
 Edit `config.js` to change the channel name, brief description, active-member display value, picture, or Telegram invite URL. The current picture is the path set in `displayPicture`. To use your own local picture, put it in `assets/` and set `displayPicture` to its path, such as `./assets/my-channel.webp`; a full HTTPS image URL also works. If the picture cannot load, the page shows the first letter of the channel name instead. The member value is manually maintained, so update it when the channel changes. `config.js` is publicly served; do not put secrets in it.
 
-Set `advertisingManager` and `advertisingTelegramUsername` to show the advertising contact strip below the join card. Enter a Telegram username with or without the leading `@`. It is displayed as text, without a link. The strip remains hidden while either value is blank or the username contains characters other than letters, numbers, and underscores.
-The current `@your_username` is a demo placeholder; replace it before publishing.
+Set `advertisingManager` and `advertisingEmail` to show the advertising contact strip below the join card. The email is displayed as text, without a link. The strip remains hidden while either value is blank or the email does not have a basic `name@domain.extension` format. The current advertising email is `contact@kalam.trade`.
 
 ## Live deployment and verification
 
+The current page uses a small WebP avatar and tag texture, system fonts, deferred page scripts, and an asynchronous Meta Pixel script. The tag lettering is HTML text. The channel name and invite URL in `index.html` are fallbacks for visitors whose JavaScript is delayed or disabled; keep these consistent with `config.js` when changing channels.
+
 Previously verified URL (2026-10-04): https://dark-wind-4e8c.edudot1234.workers.dev/
 
-The earlier page was deployed as a Cloudflare Worker. On 2026-10-04, the owner confirmed it worked and provided a Meta Events Manager **Test Events** screenshot showing `PageView` and `TelegramClick` as **Processed**. The screenshot also showed `SubscribedButtonClick` as **Automatically logged**. That extra event does not confirm a Telegram join and should not be used as the campaign's CTA metric. The `PageView` row was labelled **Custom event** in Meta's screenshot; the source code calls `fbq('track', 'PageView')`. The current `wrangler.jsonc` names `kalam-market-insight`, so confirm the production Worker and URL in Cloudflare before using the site for ads.
+The earlier page was deployed as a Cloudflare Worker. On 2026-10-04, the owner confirmed it worked and provided a Meta Events Manager **Test Events** screenshot showing `PageView` and `TelegramClick` as **Processed**. The screenshot also showed `SubscribedButtonClick` as **Automatically logged**. That extra event does not confirm a Telegram join and should not be used as the campaign's CTA metric. The `PageView` row was labelled **Custom event** in Meta's screenshot; the source code calls `fbq('track', 'PageView')`. The current `wrangler.jsonc` names `meta-camp-landing-page`, so confirm the production Worker and URL in Cloudflare before using the site for ads.
 
 Campaign destination example from the earlier deployment:
 
@@ -25,7 +26,7 @@ https://dark-wind-4e8c.edudot1234.workers.dev/?utm_source=meta&utm_medium=paid_s
 
 1. Review the channel name, description, active-member value, picture, and invite URL in `config.js` before launch.
 2. Review the information-only disclaimer in `index.html`.
-3. The Meta Pixel ID is `1411019554494516` in `index.html`. Update both the JavaScript initialization and the `noscript` image URL if the Pixel changes.
+3. The Meta Pixel ID is `28537605579214881` in `index.html`. Update both the JavaScript initialization and the `noscript` image URL if the Pixel changes.
 4. Confirm that your site notice and privacy information meet the requirements that apply to your campaign.
 
 ## Deploy updates from Git

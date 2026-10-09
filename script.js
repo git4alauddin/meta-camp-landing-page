@@ -73,10 +73,10 @@ if (telegramUrl) {
 const TELEGRAM_CHANNEL_URL = telegramLink.href;
 
 const advertisingManager = configuredText(config.advertisingManager);
-const advertisingTelegramUsername = configuredText(config.advertisingTelegramUsername).replace(/^@/, '');
-if (advertisingManager && /^[A-Za-z0-9_]+$/.test(advertisingTelegramUsername)) {
+const advertisingEmail = configuredText(config.advertisingEmail);
+if (advertisingManager && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(advertisingEmail)) {
   document.getElementById('advertising-manager').textContent = advertisingManager;
-  document.getElementById('advertising-username').textContent = `@${advertisingTelegramUsername}`;
+  document.getElementById('advertising-email').textContent = advertisingEmail;
   document.getElementById('advertising-contact').hidden = false;
 }
 

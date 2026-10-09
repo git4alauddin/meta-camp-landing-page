@@ -37,29 +37,86 @@ body {
 .join-card {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   margin-bottom: 28px;
   padding: 48px 48px 42px;
-  border: 1px solid #294052;
-  border-radius: 28px;
-  background: linear-gradient(180deg, #102638, #0d1d29);
+  border: 1px solid #354b5a;
+  border-radius: 16px;
+  background: linear-gradient(165deg, #152c3b, #102330 55%, #0d1d29);
   color: #fff;
   text-align: center;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 0 #3a5060,
+    0 3px 0 #203746,
+    0 4px 0 #0b1822,
+    0 24px 54px rgba(0, 0, 0, 0.28);
 }
 
 .join-card::before {
   position: absolute;
   z-index: -1;
-  inset: -110px -80px auto;
-  height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 119, 181, 0.26), transparent 70%);
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.055' filter='url(%23grain)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 0, rgba(43, 98, 125, 0.16), transparent 72%);
+  background-size: 160px 160px, 100% 100%;
+  background-repeat: repeat, no-repeat;
   content: "";
+  pointer-events: none;
+}
+
+.join-card::after {
+  position: absolute;
+  z-index: -1;
+  inset: 12px;
+  border: 1px solid rgba(139, 199, 229, 0.12);
+  border-radius: 7px;
+  content: "";
+  pointer-events: none;
+}
+
+.corner-tag {
+  position: absolute;
+  top: -22px;
+  right: -12px;
+  z-index: 1;
+  display: block;
+  width: clamp(112px, 36vw, 148px);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.tag-art {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.28));
+}
+.tag-copy {
+  position: absolute;
+  z-index: 4;
+  left: 48.5%;
+  top: 65.5%;
+  width: 52%;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%) rotate(11deg);
+  color: #d7e7ef;
+  font-size: clamp(10px, 3.1vw, 13px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.025em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .join-avatar {
@@ -200,30 +257,42 @@ body {
 .advertising-contact {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 22px 4px;
-  border-top: 1px solid rgba(139, 199, 229, 0.22);
+  gap: 8px;
+  padding: 24px 4px;
+  text-align: center;
 }
 
 .advertising-contact[hidden] { display: none; }
 .advertising-contact p { margin: 0; color: #aabdc9; font-size: 13px; line-height: 1.5; }
-.advertising-contact strong { color: #d7e7ef; font-weight: 600; }
-.advertising-handle strong { color: #8bc7e5; white-space: nowrap; }
+.advertising-email { min-width: 0; max-width: 100%; }
+.advertising-email strong { color: #8bc7e5; font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+.advertising-credit strong { color: #d7e7ef; font-weight: 600; }
 
 .disclaimer {
   width: 100%;
   padding: 22px 4px 0;
-  border-top: 1px solid rgba(139, 199, 229, 0.22);
   text-align: center;
+}
+.advertising-contact,
+.disclaimer { position: relative; }
+.advertising-contact::before,
+.disclaimer::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 199, 229, 0.24), transparent);
+  content: "";
 }
 .disclaimer p { margin: 0; color: #91a6b4; font-size: 12px; line-height: 1.5; }
 
 @media (max-width: 600px) {
   .main-content { padding: 32px 0; }
-  .join-card { padding: 38px 24px 34px; border-radius: 24px; }
-  .advertising-contact { flex-direction: column; gap: 12px; text-align: center; }
+  .join-card { padding: 38px 24px 34px; border-radius: 14px; }
+  .join-card::after { inset: 10px; border-radius: 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

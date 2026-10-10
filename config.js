@@ -5,7 +5,7 @@ window.LANDING_CONFIG = {
   description: 'Market updates, useful insights & interactive fun.',
   activeUsers: '17999+',
   displayPicture: './assets/channel-avatar.webp',
-  telegramUrl: 'https://t.me/+XA1346Y6XPAzZTBl',
+  telegramUrl: 'https://t.me/+QmBrh8eSavs0NWI1',
   advertisingManager: 'Kalam Agency',
   advertisingEmail: 'contact@kalam.trade' // Public advertising contact email
 };
